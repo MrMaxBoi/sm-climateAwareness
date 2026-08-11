@@ -1,0 +1,25 @@
+{
+  "name": "ecolearn-hub",
+  "version": "1.0.0",
+  "description": "Mobile-first climate learning hub for the EcoLearn SDG 13.3 campaign",
+  "main": "backend/server.js",
+  "scripts": {
+    "dev": "NODE_ENV=development nodemon backend/server.js",
+    "build": "npm run build --prefix frontend",
+    "start": "NODE_ENV=production node backend/server.js",
+    "lint": "npm run lint --prefix frontend",
+    "check": "npm run lint && npm run build"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "EcoLearn Group 5",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "mongoose": "^8.18.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
