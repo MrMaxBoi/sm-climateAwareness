@@ -56,6 +56,11 @@ if (process.env.NODE_ENV === "production") {
 app.use(notFound);
 app.use(errorHandler);
 
+const handler = async (req, res) => {
+  await connectDB();
+  return app(req, res);
+};
+
 const startServer = async () => {
   await connectDB();
   app.listen(PORT, () => {
@@ -69,3 +74,5 @@ if (process.env.NODE_ENV !== "test" && !process.env.VERCEL) {
     process.exit(1);
   });
 }
+
+export default handler;
