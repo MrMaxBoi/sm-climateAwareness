@@ -283,8 +283,8 @@ The solution should therefore be described as a core component of the Instagram 
 | Chakra UI | Visual components and responsive design | Enables a consistent, readable, mobile-first interface within limited project time. |
 | Node.js and Express | Application server and API | Handles validation, grading, progress retrieval, protected analytics, and production delivery from one deployable service. |
 | MongoDB Atlas and Mongoose | Cloud data storage and validation | Stores content and anonymous campaign activity, supports flexible content structures, and allows the deployed service to access the same campaign database. |
-| Railway | Planned web hosting | Provides GitHub-based deployment, environment-variable management, health checks, logs, and a public URL suitable for QR codes and Instagram links. |
-| GitHub and Git | Version control | Preserves development history, supports team handover, and enables Railway deployment from the main branch. |
+| Vercel | Planned web hosting | Provides GitHub-based deployment, environment-variable management, serverless Express execution, logs, HTTPS, and a public URL suitable for QR codes and Instagram links. |
+| GitHub and Git | Version control | Preserves development history, supports team handover, and enables Vercel deployment from the main branch. |
 
 The frontend and backend are deployed as one service. Express serves the built React application and the `/api` routes from the same domain. This avoids cross-origin configuration and simplifies deployment for a student prototype.
 
@@ -292,7 +292,7 @@ The frontend and backend are deployed as one service. Express serves the built R
 
 The implementation includes several design choices relevant to quality:
 
-- real secrets are stored in `.env` locally or Railway Variables, not committed to Git;
+- real secrets are stored in `.env` locally or Vercel Environment Variables, not committed to Git;
 - `.env.example` documents required variable names without containing production secrets;
 - MongoDB schemas validate content and result structures;
 - answer keys are not included in the public quiz payload;
@@ -354,7 +354,7 @@ This distinction strengthens the reflection because it demonstrates scope contro
 | Informed by expert interview | Immediate quiz feedback, interaction, actions, simple interface, maintainable content, and engagement measures directly answer key findings. | Include traceability table and cite the interview report. |
 | Demonstrated | Major journeys can be shown from discovery through progress and analytics. | Screenshots, video link, QR code, test date, device/browser. |
 | Measurable | Tracks consenting visits, quiz results, paired assessment change, actions, and feedback. | Final aggregate data and Instagram Insights. |
-| Functional during campaign | Scheduling windows control published quizzes and actions; Railway provides planned public hosting. | Successful deployment and campaign-period availability evidence. |
+| Functional during campaign | Scheduling windows control published quizzes and actions; Vercel provides planned public hosting. | Successful deployment and campaign-period availability evidence. |
 
 ---
 
@@ -367,7 +367,7 @@ Replace every placeholder below with actual evidence before submission.
 | Figure | Evidence | What it proves | Status |
 | --- | --- | --- | --- |
 | Figure 7.1 | Instagram profile showing `@climate.apu` and EcoLearn link in bio | Campaign integration and accessibility | TODO |
-| Figure 7.2 | QR code that opens the final Railway URL | Mobile access route | TODO |
+| Figure 7.2 | QR code that opens the final Vercel URL | Mobile access route | TODO |
 | Figure 7.3 | EcoLearn home page on a smartphone-sized display | Mobile-first interface and campaign identity | TODO |
 | Figure 7.4 | Learn page and one climate-update detail page | Functional educational resource hub | TODO |
 | Figure 7.5 | Daily quiz question before answering | Interactive learning feature | TODO |
@@ -378,7 +378,7 @@ Replace every placeholder below with actual evidence before submission.
 | Figure 7.10 | Eco-action before and after completion | Practical participation and persistence | TODO |
 | Figure 7.11 | Feedback form and confirmation | User evaluation mechanism | TODO |
 | Figure 7.12 | Protected admin analytics without secrets visible | Monitoring and controlling evidence | TODO |
-| Figure 7.13 | Railway deployment and health endpoint | Public functional deployment | TODO |
+| Figure 7.13 | Vercel deployment and health endpoint | Public functional deployment | TODO |
 | Figure 7.14 | Instagram Story/post promoting a specific quiz or action | Active campaign integration rather than passive link placement | TODO |
 
 ### 7.2 Recommended demonstration recording
@@ -401,7 +401,7 @@ Store the recording in an accessible location approved by the group or lecturer.
 ### 7.3 Screenshot quality rules
 
 - Capture the browser URL where public accessibility matters.
-- Do not expose `MONGO_URI`, database credentials, `ADMIN_KEY`, `ANALYTICS_KEY`, Railway Variables, or private participant identifiers.
+- Do not expose `MONGO_URI`, database credentials, `ADMIN_KEY`, `ANALYTICS_KEY`, Vercel Environment Variables, or private participant identifiers.
 - Use readable resolution and crop irrelevant browser tabs or personal information.
 - Use consistent figure numbering and descriptive captions.
 - Record the capture date because analytics change during the campaign.
@@ -410,10 +410,10 @@ Store the recording in an accessible location approved by the group or lecturer.
 
 ### 7.4 Live-link fields
 
-Complete these after Railway deployment:
+Complete these after Vercel deployment:
 
-- **Live application URL:** `[INSERT FINAL RAILWAY URL]`
-- **Health-check URL:** `[INSERT FINAL RAILWAY URL]/api/health`
+- **Live application URL:** `[INSERT FINAL VERCEL URL]`
+- **Health-check URL:** `[INSERT FINAL VERCEL URL]/api/health`
 - **Instagram profile URL:** `https://www.instagram.com/climate.apu/`
 - **Demonstration video URL:** `[INSERT ACCESSIBLE VIDEO URL]`
 - **QR code file/location:** `[INSERT FILE OR APPENDIX REFERENCE]`
@@ -660,7 +660,7 @@ Health check:
 
 ### 12.2 Environment variables
 
-Production configuration is held in Railway Variables. Required or relevant names are documented in `.env.example`:
+Production configuration is held in Vercel Environment Variables. Required or relevant names are documented in `.env.example`:
 
 - `MONGO_URI`
 - `ADMIN_KEY`
@@ -686,7 +686,7 @@ This runs backend tests, frontend linting, and the production frontend build.
 
 Starter quiz and action availability uses the configured campaign start and end dates. If those dates change:
 
-1. update the Railway variables;
+1. update the Vercel environment variables;
 2. redeploy the service; and
 3. run the seed command against the intended database so starter item windows are updated.
 
@@ -706,10 +706,10 @@ Do not seed an unknown or production database without first verifying the `MONGO
 
 ### Functional completion
 
-- [ ] Railway deployment is successful.
+- [ ] Vercel deployment is successful.
 - [ ] Public domain opens on phone and desktop.
 - [ ] `/api/health` returns a successful response.
-- [ ] Atlas allows the Railway service to connect.
+- [ ] Atlas allows the Vercel function to connect.
 - [ ] Climate updates load.
 - [ ] Daily and weekly quizzes load and submit.
 - [ ] Baseline and final assessments submit.

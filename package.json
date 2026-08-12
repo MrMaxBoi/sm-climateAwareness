@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "NODE_ENV=development nodemon backend/server.js",
     "build": "npm run build --prefix frontend",
+    "vercel-build": "npm ci --prefix frontend && npm run build && node scripts/prepare-vercel-build.js",
     "start": "NODE_ENV=production node backend/server.js",
     "seed": "node backend/scripts/seed.js",
     "test": "NODE_ENV=test node --test backend/tests/*.test.js",

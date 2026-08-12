@@ -73,9 +73,11 @@ Participant-aware endpoints require an anonymous UUID in the `X-Participant-ID` 
 
 The private administration interface is available only by entering `/admin` directly. It is not linked from public navigation. Set a strong `ADMIN_KEY` in the environment, enter it on the admin page, and use the JSON editor to create or update climate updates, quizzes, and eco-actions. Publish content by changing its `status` after review; the interface intentionally provides no destructive delete operation.
 
-## Railway preparation
+## Vercel deployment
 
-`railway.json` configures the production build, start command, and `/api/health` deployment check. Configure `MONGO_URI`, `ADMIN_KEY`, `ANALYTICS_KEY`, and optionally `PORT` through Railway Variables. Never commit their real values.
+`vercel.json` configures the Vercel build, and the root `server.js` adapts the Express application to Vercel's serverless runtime. Import the repository as a Vercel Hobby project with the repository root selected, then configure `MONGO_URI`, `ADMIN_KEY`, `ANALYTICS_KEY`, `CAMPAIGN_NAME`, `CAMPAIGN_START`, `CAMPAIGN_END`, and `INSTAGRAM_URL` through Vercel Environment Variables. `PORT` is not needed on Vercel. Never commit real secret values.
+
+The Vercel build compiles the React frontend and prepares it as public assets while the Express function continues to serve the `/api` routes and SPA fallbacks from the same domain. `railway.json` remains available only as a fallback deployment configuration.
 
 Campaign timing and Instagram integration are configured with `CAMPAIGN_NAME`, `CAMPAIGN_START`, `CAMPAIGN_END`, and `INSTAGRAM_URL`. Re-run `npm run seed` after changing campaign dates so scheduled starter quizzes and actions receive the updated window.
 

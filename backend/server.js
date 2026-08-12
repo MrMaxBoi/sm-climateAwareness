@@ -44,9 +44,12 @@ app.use("/api/admin", adminLimiter, adminRoutes);
 app.use("/api/{*any}", notFound);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "frontend", "dist")));
+  const frontendDirectory = process.env.VERCEL
+    ? path.join(__dirname, "public")
+    : path.join(__dirname, "frontend", "dist");
+  app.use(express.static(frontendDirectory));
   app.get("/{*any}", (_req, res) => {
-    res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+    res.sendFile(path.join(frontendDirectory, "index.html"));
   });
 }
 
@@ -60,7 +63,7 @@ const startServer = async () => {
   });
 };
 
-if (process.env.NODE_ENV !== "test") {
+if (process.env.NODE_ENV !== "test" && !process.env.VERCEL) {
   startServer().catch((error) => {
     console.error(`Unable to start EcoLearn: ${error.message}`);
     process.exit(1);
