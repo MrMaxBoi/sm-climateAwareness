@@ -7,16 +7,23 @@
     "dev": "NODE_ENV=development nodemon backend/server.js",
     "build": "npm run build --prefix frontend",
     "start": "NODE_ENV=production node backend/server.js",
+    "seed": "node backend/scripts/seed.js",
+    "test": "NODE_ENV=test node --test backend/tests/*.test.js",
     "lint": "npm run lint --prefix frontend",
-    "check": "npm run lint && npm run build"
+    "check": "npm test && npm run lint && npm run build"
   },
   "type": "module",
   "keywords": [],
   "author": "EcoLearn Group 5",
   "license": "ISC",
+  "engines": {
+    "node": ">=20"
+  },
   "dependencies": {
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
+    "express-rate-limit": "^8.6.2",
+    "helmet": "^8.3.0",
     "mongoose": "^8.18.0"
   },
   "devDependencies": {
